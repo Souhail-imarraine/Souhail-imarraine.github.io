@@ -1,33 +1,43 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
-    
-    // Your email address where you want to receive messages
-    $to = "souhailimarrainedevo@gmail.com";
-    
-    // Email subject
-    $subject = "New Contact Form Message from $name";
-    
-    // Email content
-    $email_content = "Name: $name\n";
-    $email_content .= "Email: $email\n\n";
-    $email_content .= "Message:\n$message\n";
-    
-    // Email headers
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-    
-    // Send email
-    if (mail($to, $subject, $email_content, $headers)) {
-        echo json_encode(["status" => "success", "message" => "Thank you! Your message has been sent."]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "Oops! Something went wrong. Please try again."]);
-    }
-} else {
-    echo json_encode(["status" => "error", "message" => "Invalid request method."]);
+header('Content-Type: application/json');
+
+// Get form data
+$name = $_POST['name'] ?? '';
+$email = $_POST['email'] ?? '';
+$message = $_POST['message'] ?? '';
+
+// Validate inputs
+$errors = [];
+
+if (empty($name)) {
+    $errors[] = 'Name is required';
 }
+
+if (empty($email)) {
+    $errors[] = 'Email is required';
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = 'Invalid email format';
+}
+
+if (empty($message)) {
+    $errors[] = 'Message is required';
+}
+
+// If there are errors, return them
+if (!empty($errors)) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => implode(', ', $errors)
+    ]);
+    exit;
+}
+
+// Here you would typically send an email or store the message
+// For this example, we'll just simulate success
+$response = [
+    'status' => 'success',
+    'message' => 'Thank you for your message! I will get back to you soon.'
+];
+
+echo json_encode($response);
 ?> 

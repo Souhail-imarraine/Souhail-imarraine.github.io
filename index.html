@@ -100,6 +100,25 @@
                 50% { transform: scale(1.05); opacity: 0.3; }
                 100% { transform: scale(0.95); opacity: 0.2; }
             }
+
+            /* Tablet-specific adjustments */
+            @media (min-width: 768px) and (max-width: 1023px) {
+                .tablet-container {
+                    @apply px-8;
+                }
+                
+                .tablet-grid {
+                    @apply grid-cols-2 gap-6;
+                }
+                
+                .tablet-text {
+                    @apply text-center;
+                }
+                
+                .tablet-sidebar {
+                    @apply w-[240px];
+                }
+            }
         }
     </style>
 </head>
@@ -110,13 +129,13 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-dark/95 backdrop-blur-sm">
-        <div class="container mx-auto px-4 py-3">
+        <div class="container mx-auto px-4 md:px-8 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                     <div class="w-10 h-10 bg-primary rounded-full hover:scale-110 transition-transform duration-300"></div>
                     <span class="text-xl font-bold">SOUHAIL IMARRAINE</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
                     <a href="#home" class="hover:text-primary transition-colors">Home</a>
                     <a href="#about" class="hover:text-primary transition-colors">About</a>
                     <a href="#services" class="hover:text-primary transition-colors">Services</a>
@@ -145,7 +164,7 @@
     <!-- Main Layout -->
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
-        <aside class="hidden lg:block w-80 fixed left-0 top-0 h-screen bg-secondary/30 backdrop-blur-sm border-r border-gray-800/50 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-dark" style="backdrop-filter: blur(12px);">
+        <aside class="hidden lg:block w-[240px] xl:w-80 fixed left-0 top-0 h-screen bg-secondary/30 backdrop-blur-sm border-r border-gray-800/50 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-dark" style="backdrop-filter: blur(12px);">
             <div class="pt-24 px-6 space-y-8">
                 <!-- Profile Quick Info -->
                 <div class="text-center">
@@ -190,17 +209,17 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="lg:ml-80 lg:mr-96">
+        <main class="w-full lg:ml-[240px] xl:ml-80 lg:mr-[240px] xl:mr-96">
             <!-- Hero Section -->
-            <section id="home" class="min-h-screen flex items-center pt-16">
-                <div class="container mx-auto px-4">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div class="space-y-6">
+            <section id="home" class="min-h-screen flex items-center pt-20">
+                <div class="container mx-auto px-4 md:px-8">
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                        <div class="space-y-6 text-center md:text-left">
                             <p class="text-primary text-xl">Hello, I am</p>
-                            <h1 class="text-5xl md:text-6xl font-bold">SOUHAIL IMARRAINE</h1>
-                            <h2 class="text-4xl md:text-5xl font-bold text-gradient">Full Stack Developer</h2>
-                            <p class="text-gray-400 text-lg">Hello, I'm a passionate student at YouCode, eager to learn and grow in the field of web development. I'm developing my skills in both frontend and backend development, with a focus on creating responsive and user-friendly web applications using modern technologies.</p>
-                            <div class="flex flex-wrap gap-4">
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold">SOUHAIL IMARRAINE</h1>
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient">Full Stack Developer</h2>
+                            <p class="text-gray-400 text-lg max-w-xl mx-auto md:mx-0">Hello, I'm a passionate student at YouCode, eager to learn and grow in the field of web development. I'm developing my skills in both frontend and backend development, with a focus on creating responsive and user-friendly web applications using modern technologies.</p>
+                            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                                 <button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-colors magnetic">
                                     Hire Me
                                 </button>
@@ -216,9 +235,9 @@
                                 <a href="https://www.linkedin.com/in/souhail-imarraine-7a7abb334/" class="text-gray-400 hover:text-primary transition-colors"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
-                        <div class="relative">
-                            <div class="relative z-10">
-                                <img src="DSC_6729.JPG" alt="Profile" class="rounded-lg w-full max-w-md mx-auto object-cover shadow-xl hover:scale-105 transition-transform duration-300">
+                        <div class="relative order-first md:order-last">
+                            <div class="relative z-10 max-w-md mx-auto">
+                                <img src="DSC_6729.JPG" alt="Profile" class="rounded-lg w-full object-cover shadow-xl hover:scale-105 transition-transform duration-300">
                                 <div class="absolute -bottom-4 -right-4 w-1/2 h-1/2 bg-primary/20 rounded-lg -z-10"></div>
                             </div>
                         </div>
@@ -334,14 +353,14 @@
             </section>
 
             <!-- Services Section -->
-            <section id="services" class="py-20">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-8" data-aos="fade-up">My Services</h2>
-                    <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <section id="services" class="py-16 md:py-20">
+                <div class="container mx-auto px-4 md:px-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">My Services</h2>
+                    <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
                         Offering comprehensive web development solutions with a focus on modern technologies and best practices.
                     </p>
                     
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         <!-- Frontend Development -->
                         <div class="bg-secondary/50 p-8 rounded-xl hover:bg-secondary/70 transition-colors group" data-aos="fade-up" data-aos-delay="100">
                             <div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
@@ -484,15 +503,15 @@
             </section>
 
             <!-- Projects Section -->
-            <section id="projects" class="py-20 bg-gradient">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-8" data-aos="fade-up">My Projects</h2>
-                    <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <section id="projects" class="py-16 md:py-20 bg-gradient">
+                <div class="container mx-auto px-4 md:px-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">My Projects</h2>
+                    <p class="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
                         Here are some of my featured projects. Click on any project to learn more about it.
                     </p>
                     
                     <!-- Projects Filter -->
-                    <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-wrap justify-center gap-4 mb-12">
                         <button class="px-6 py-2 rounded-full bg-primary text-white filter-btn active">All</button>
                         <button class="px-6 py-2 rounded-full bg-dark hover:bg-primary/20 transition-colors filter-btn">Web Development</button>
                         <button class="px-6 py-2 rounded-full bg-dark hover:bg-primary/20 transition-colors filter-btn">UI/UX Design</button>
@@ -500,7 +519,7 @@
                     </div>
 
                     <!-- Projects Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                         <!-- Project Card 1 -->
                         <div class="project-card group" data-aos="fade-up" data-aos-delay="300" data-category="web">
                             <a href="http://54.211.230.209/" class="block relative overflow-hidden rounded-xl" data-fancybox="projects" target="_blank">
@@ -637,9 +656,9 @@
             </section>
 
             <!-- Contact Section -->
-            <section id="contact" class="py-20 bg-secondary/50">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-16">Let's Work Together</h2>
+            <section id="contact" class="py-16 md:py-20 bg-secondary/50">
+                <div class="container mx-auto px-4 md:px-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Let's Work Together</h2>
                     <div class="max-w-2xl mx-auto">
                         <form id="contactForm" class="space-y-6" onsubmit="submitForm(event)">
                             <input type="text" name="name" id="name" placeholder="Your Name" class="w-full px-4 py-3 bg-dark border border-gray-700 rounded-lg focus:border-primary focus:outline-none transition-all duration-300 hover:border-primary" required>
@@ -659,7 +678,7 @@
         </main>
 
         <!-- Right Sidebar -->
-        <aside class="hidden lg:block w-96 fixed right-0 top-0 h-screen bg-secondary/30 backdrop-blur-sm border-l border-gray-800/50 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-dark" style="backdrop-filter: blur(12px);">
+        <aside class="hidden lg:block w-[240px] xl:w-96 fixed right-0 top-0 h-screen bg-secondary/30 backdrop-blur-sm border-l border-gray-800/50 overflow-y-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-dark" style="backdrop-filter: blur(12px);">
             <div class="pt-24 px-6 space-y-8">
                 <!-- Latest Projects Widget -->
                 <div class="bg-dark/50 p-6 rounded-xl">
